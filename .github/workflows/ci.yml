@@ -59,3 +59,10 @@ jobs:
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.settings.args }}
+
+      - name: Checkout private repository
+        uses: actions/checkout@v2
+        with:
+          repository: Mehjung/paisy2pdf_lib_rs.git
+          token: ${{ secrets.GH_PAT }}
+          path: "private-repo"
