@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: Mehjung/paisy2pdf_lib_rs.git
-          token: ${{ secrets.GH_PAT }}
+          token: ${{ secrets.paisy_lib}}
           path: "private-repo"
           ref: "main"
       - name: setup node
