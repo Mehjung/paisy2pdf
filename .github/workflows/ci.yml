@@ -9,46 +9,33 @@ jobs:
   publish-tauri:
     permissions:
       contents: write
-    strategy:
-      fail-fast: false
-      matrix:
-        settings:
-          - platform: "macos-latest"
-            args: "--target aarch64-apple-darwin"
-          - platform: "macos-latest"
-            args: "--target x86_64-apple-darwin"
-          - platform: "ubuntu-22.04"
-            args: ""
-          - platform: "windows-latest"
-            args: ""
-
-    runs-on: ${{ matrix.settings.platform }}
+      id-token: write
+    runs-on: windows-latest
+    env:
+      CARGO_NET_GIT_FETCH_WITH_CLI: true # Setze die Variable global für den Job
     steps:
-      - uses: actions/checkout@v4
-
-      - name: install dependencies (ubuntu only)
-        if: matrix.settings.platform == 'ubuntu-22.04'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.0-dev libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
-
+      - uses: actions/checkout@v2
+      - name: Checkout private repository
+        uses: actions/checkout@v2
+        with:
+          repository: Mehjung/paisy2pdf_lib_rs.git
+          token: ${{ secrets.GH_PAT }}
+          path: "private-repo"
       - name: setup node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v2
         with:
           node-version: lts/*
           cache: "npm"
-
       - name: install Rust stable
-        uses: dtolnay/rust-toolchain@stable
-
-      - name: Rust cache
-        uses: swatinem/rust-cache@v2
+        uses: actions-rs/toolchain@v1
         with:
-          workspaces: "./src-tauri -> target"
-
+          toolchain: stable
+          default: true
+          profile: minimal
+      - name: Rust cache
+        uses: Swatinem/rust-cache@v1
       - name: install frontend dependencies
         run: npm install
-
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -58,11 +45,3 @@ jobs:
           releaseBody: "See the assets to download this version and install."
           releaseDraft: true
           prerelease: false
-          args: ${{ matrix.settings.args }}
-
-      - name: Checkout private repository
-        uses: actions/checkout@v2
-        with:
-          repository: Mehjung/paisy2pdf_lib_rs.git
-          token: ${{ secrets.GH_PAT }}
-          path: "private-repo"
