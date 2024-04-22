@@ -1,0 +1,29 @@
+{
+  "name": "paisy2pdf",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "prebuild": "npx -y shx cp node_modules/@db-ui/core/dist/fonts/* public/fonts & npx -y shx cp node_modules/@db-ui/core/dist/images/* public/images & npx -y shx cp node_modules/@db-ui/core/dist/js/* public/js & npx -y shx cp -r node_modules/@db-ui/core/dist/icons/* public/icons",
+    "dev": "vite",
+    "td": "tauri dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@db-ui/base": "^0.27.1",
+    "@db-ui/react-elements-enterprise": "^0.28.0",
+    "@tauri-apps/api": "^1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^1",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
+    "vite": "^5.0.0"
+  }
+}
