@@ -23,9 +23,9 @@ jobs:
     env:
       CARGO_NET_GIT_FETCH_WITH_CLI: true #
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Checkout private repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: Mehjung/paisy2pdf_lib_rs.git
           token: ${{ secrets.GH_PAT }}
@@ -58,6 +58,7 @@ jobs:
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_ASKPASS: echo ${{ secrets.GH_PAT }}
         with:
           tagName: app-v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version.
           releaseName: "App v__VERSION__"
