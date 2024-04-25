@@ -23,11 +23,11 @@ jobs:
             }
           }
           echo "Latest version is $latestVersion"
-          echo "VERSION=$latestVersion" >> "$GITHUB_OUTPUT"
+          echo "version=$latestVersion" >> "$GITHUB_OUTPUT"
 
       - name: Update Index HTML
         run: |
-          $latestVersion = "${{ steps.find_latest_version.outputs.VERSION }}"
+          $latestVersion = "${{ steps.find_latest_version.outputs.version }}"
           $latestFile = (Get-ChildItem -Path ".\releases\download\$latestVersion" -Filter "*.exe").Name
           echo "Latest file is $latestFile"
           $latestPath = "https://mehjung.github.io/paisy2pdf/releases/download/$latestVersion/$latestFile"
