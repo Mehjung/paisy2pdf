@@ -23,7 +23,7 @@ jobs:
             }
           }
           echo "Latest version is $latestVersion"
-          echo "version=$latestVersion" >> "$GITHUB_OUTPUT"
+          echo "version=$latestVersion" >> $env:GITHUB_OUTPUT
 
       - name: Update Index HTML
         run: |
