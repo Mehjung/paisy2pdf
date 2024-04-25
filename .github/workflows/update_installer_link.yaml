@@ -16,6 +16,7 @@ jobs:
           $versions = Get-ChildItem -Path .\releases\download\ -Directory | ForEach-Object { $_.Name }
           [Version]$latestVersion = $versions[0]
           foreach ($version in $versions) {
+            echo $version
             if ([Version]$version -gt $latestVersion) {
               $latestVersion = $version
             }
@@ -27,7 +28,7 @@ jobs:
         run: |
           $latestVersion = "${{ steps.find_version.outputs.version }}"
           $latestFile = (Get-ChildItem -Path ".\releases\download\$latestVersion" -Filter "*.exe").Name
-          $latestPath = "https://<username>.github.io/<repository>/releases/download/$latestVersion/$latestFile"
+          $latestPath = "https://mehjung.github.io/paisy2pdf/releases/download/$latestVersion/$latestFile"
           (Get-Content -Path index.html) -replace 'href="https://mehjung.github.io/paisy2pdf/releases/download/.*"', "href=`"$latestPath`"" | Set-Content -Path index.html
 
       - name: Commit and Push Changes
