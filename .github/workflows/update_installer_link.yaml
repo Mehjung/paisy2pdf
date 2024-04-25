@@ -26,7 +26,7 @@ jobs:
 
       - name: Update Index HTML
         run: |
-          $latestVersion = "${{ steps.find_version.outputs.version }}"
+          $latestVersion = $env:GITHUB_REF
           $latestFile = (Get-ChildItem -Path ".\releases\download\$latestVersion" -Filter "*.exe").Name
           $latestPath = "https://mehjung.github.io/paisy2pdf/releases/download/$latestVersion/$latestFile"
           (Get-Content -Path index.html) -replace 'href="https://mehjung.github.io/paisy2pdf/releases/download/.*"', "href=`"$latestPath`"" | Set-Content -Path index.html
