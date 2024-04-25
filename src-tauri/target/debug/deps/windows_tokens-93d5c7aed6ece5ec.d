@@ -1,0 +1,10 @@
+C:\Users\isla1\OneDrive\Desktop\paisy2pdf\src-tauri\target\debug\deps\libwindows_tokens-93d5c7aed6ece5ec.rmeta: C:\Users\isla1\.cargo\registry\src\index.crates.io-6f17d22bba15001f\windows-tokens-0.39.0\src\lib.rs C:\Users\isla1\.cargo\registry\src\index.crates.io-6f17d22bba15001f\windows-tokens-0.39.0\src\to_tokens.rs C:\Users\isla1\.cargo\registry\src\index.crates.io-6f17d22bba15001f\windows-tokens-0.39.0\src\token_stream.rs C:\Users\isla1\.cargo\registry\src\index.crates.io-6f17d22bba15001f\windows-tokens-0.39.0\src\runtime.rs
+
+C:\Users\isla1\OneDrive\Desktop\paisy2pdf\src-tauri\target\debug\deps\libwindows_tokens-93d5c7aed6ece5ec.rlib: C:\Users\isla1\.cargo\registry\src\index.crates.io-6f17d22bba15001f\windows-tokens-0.39.0\src\lib.rs C:\Users\isla1\.cargo\registry\src\index.crates.io-6f17d22bba15001f\windows-tokens-0.39.0\src\to_tokens.rs C:\Users\isla1\.cargo\registry\src\index.crates.io-6f17d22bba15001f\windows-tokens-0.39.0\src\token_stream.rs C:\Users\isla1\.cargo\registry\src\index.crates.io-6f17d22bba15001f\windows-tokens-0.39.0\src\runtime.rs
+
+C:\Users\isla1\OneDrive\Desktop\paisy2pdf\src-tauri\target\debug\deps\windows_tokens-93d5c7aed6ece5ec.d: C:\Users\isla1\.cargo\registry\src\index.crates.io-6f17d22bba15001f\windows-tokens-0.39.0\src\lib.rs C:\Users\isla1\.cargo\registry\src\index.crates.io-6f17d22bba15001f\windows-tokens-0.39.0\src\to_tokens.rs C:\Users\isla1\.cargo\registry\src\index.crates.io-6f17d22bba15001f\windows-tokens-0.39.0\src\token_stream.rs C:\Users\isla1\.cargo\registry\src\index.crates.io-6f17d22bba15001f\windows-tokens-0.39.0\src\runtime.rs
+
+C:\Users\isla1\.cargo\registry\src\index.crates.io-6f17d22bba15001f\windows-tokens-0.39.0\src\lib.rs:
+C:\Users\isla1\.cargo\registry\src\index.crates.io-6f17d22bba15001f\windows-tokens-0.39.0\src\to_tokens.rs:
+C:\Users\isla1\.cargo\registry\src\index.crates.io-6f17d22bba15001f\windows-tokens-0.39.0\src\token_stream.rs:
+C:\Users\isla1\.cargo\registry\src\index.crates.io-6f17d22bba15001f\windows-tokens-0.39.0\src\runtime.rs:
