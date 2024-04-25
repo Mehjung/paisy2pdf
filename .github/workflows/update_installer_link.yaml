@@ -14,7 +14,7 @@ jobs:
       - name: Find Latest Version
         run: |
           $versions = Get-ChildItem -Path .\releases\download\ -Directory | ForEach-Object { $_.Name }
-          [Version]$latestVersion = $versions[0]
+
           foreach ($version in $versions) {
             echo $version
             if ([Version]$version -gt $latestVersion) {
