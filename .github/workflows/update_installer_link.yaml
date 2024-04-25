@@ -12,6 +12,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Find Latest Version
+        id: find_latest_version
         run: |
           $versions = Get-ChildItem -Path .\releases\download\ -Directory | ForEach-Object { $_.Name }
 
@@ -22,11 +23,11 @@ jobs:
             }
           }
           echo "Latest version is $latestVersion"
-          echo "VERSION=$latestVersion" >> $GITHUB_ENV
+          echo "VERSION=$latestVersion" >> "$GITHUB_OUTPUT"
 
       - name: Update Index HTML
         run: |
-          $latestVersion = $env:VERSION
+          $latestVersion = "${{ steps.find_latest_version.outputs.VERSION }}"
           $latestFile = (Get-ChildItem -Path ".\releases\download\$latestVersion" -Filter "*.exe").Name
           echo "Latest file is $latestFile"
           $latestPath = "https://mehjung.github.io/paisy2pdf/releases/download/$latestVersion/$latestFile"
