@@ -1,6 +1,5 @@
 name: Update Installer Link in HTML
 
-# Definiert, wann der Workflow ausgelöst wird
 on:
   push:
     branches:
@@ -18,7 +17,6 @@ jobs:
           node-version: "18"
 
       - name: Find Latest Version
-        id: find_version
         run: |
           $versions = Get-ChildItem -Path .\releases\download\ -Directory | ForEach-Object { $_.Name }
           [Version]$latestVersion = $versions[0]
