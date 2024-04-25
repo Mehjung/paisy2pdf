@@ -1,0 +1,46 @@
+name: Update Installer Link in HTML
+
+# Definiert, wann der Workflow ausgelöst wird
+on:
+  push:
+    branches:
+      - gh-pages
+
+jobs:
+  update-html:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18"
+
+      - name: Find Latest Version
+        id: find_version
+        run: |
+          $versions = Get-ChildItem -Path .\releases\download\ -Directory | ForEach-Object { $_.Name }
+          [Version]$latestVersion = $versions[0]
+          foreach ($version in $versions) {
+            if ([Version]$version -gt $latestVersion) {
+              $latestVersion = $version
+            }
+          }
+          echo "Latest version is $latestVersion"
+          echo "::set-output name=version::$latestVersion"
+
+      - name: Update Index HTML
+        run: |
+          $latestVersion = "${{ steps.find_version.outputs.version }}"
+          $latestFile = (Get-ChildItem -Path ".\releases\download\$latestVersion" -Filter "*.exe").Name
+          $latestPath = "https://<username>.github.io/<repository>/releases/download/$latestVersion/$latestFile"
+          (Get-Content -Path index.html) -replace 'href="https://mehjung.github.io/paisy2pdf/releases/download/.*"', "href=`"$latestPath`"" | Set-Content -Path index.html
+
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add index.html
+          git commit -m "Update index.html with the latest installer link"
+          git push
