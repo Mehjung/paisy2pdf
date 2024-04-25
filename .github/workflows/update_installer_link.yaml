@@ -9,10 +9,9 @@ jobs:
   update-html:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Find Latest Version
-        id: find_version
         run: |
           $versions = Get-ChildItem -Path .\releases\download\ -Directory | ForEach-Object { $_.Name }
 
@@ -23,16 +22,16 @@ jobs:
             }
           }
           echo "Latest version is $latestVersion"
-          echo "::set-output name=version::$latestVersion"
+          echo "VERSION=$latestVersion" >> $GITHUB_ENV
 
       - name: Update Index HTML
         run: |
-          $latestVersion = "${{ steps.find_version.outputs.version }}"
+          $latestVersion = $env:VERSION
           $latestFile = (Get-ChildItem -Path ".\releases\download\$latestVersion" -Filter "*.exe").Name
           echo "Latest file is $latestFile"
           $latestPath = "https://mehjung.github.io/paisy2pdf/releases/download/$latestVersion/$latestFile"
           echo "Latest path is $latestPath"
-          (Get-Content -Path index.html) -replace 'href="https://mehjung.github.io/paisy2pdf/releases/download/.*"', "href=`"$latestPath`"" | Set-Content -Path index.html
+          (Get-Content -Path index.html) -replace 'href=".*?"', "href=`"$latestPath`"" | Set-Content -Path index.html
 
       - name: Commit and Push Changes
         run: |
