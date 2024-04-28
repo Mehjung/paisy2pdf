@@ -1,15 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>paisy2pdf Latest Installer</title>
+    <title>paisy2pdf Neuester Installer</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #fff; 
+        color: #333; 
+        font-family: "Arial", sans-serif; 
+        padding: 40px 20px; 
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto; 
+        padding: 40px;
+        background-color: #f8f9fa; 
+        border-radius: 8px; 
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); 
+      }
+      h1 {
+        font-size: 24px; 
+        margin-bottom: 20px; 
+      }
+      p {
+        font-size: 18px; 
+        color: #666; 
+        line-height: 1.6; 
+      }
+      a {
+        display: inline-block;
+        font-size: 18px;
+        padding: 10px 20px;
+        background-color: #007bff; 
+        color: white;
+        border-radius: 20px; 
+        text-decoration: none; 
+        transition: background-color 0.3s; 
+      }
+      a:hover {
+        background-color: #0056b3; 
+      }
+      .version-info {
+        font-style: italic; 
+        margin-bottom: 20px; 
+      }
+    </style>
   </head>
   <body>
-    <h1>Welcome to the download page!</h1>
-    <p>Click the link below to download the latest version of our software:</p>
-    <a href="https://mehjung.github.io/paisy2pdf/releases/download/1.0.0/paisy2pdf_1.0.0_x64-setup.exe" download id="latest-installer">Download Latest Installer</a>
-      >Download Latest Installer</a
-    >
+    <div class="container">
+      <h1>
+        Willkommen auf der Download-Seite von <strong style="color:DodgerBlue;">paisy2pdf</strong>
+      </h1>
+      <p class="version-info" style="color:DodgerBlue;"></p>
+      <p>
+        Klicken Sie auf den untenstehenden Link, um die neueste Version von
+        <strong><i>paisy2pdf</strong></i></strong> herunterzuladen:
+      </p>
+      <a
+        href="https://mehjung.github.io/paisy2pdf/releases/download/1.0.0/paisy2pdf_1.0.0_x64-setup.exe"
+        download
+        id="latest-installer"
+        >Installer herunterladen</a
+      >
+    </div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+
+      function getVersionFromLink(link) {
+        const versionMatch = link.href.match(/download\/([^/]+)\//);
+        return versionMatch ? versionMatch[1] : null;
+      }
+
+      function setVersionInfo(version) {
+        const versionInfo = document.querySelector(".version-info");
+        versionInfo.textContent = `Aktuelle Version: ${version}`;
+      }
+
+      function getInstallerLink() {
+        return document.getElementById("latest-installer");
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const installerLink = getInstallerLink();
+        const versionMatch = getVersionFromLink(installerLink);
+        if (versionMatch) {
+          setVersionInfo(versionMatch);
+        }
+      });
+    </script>
   </body>
 </html>
