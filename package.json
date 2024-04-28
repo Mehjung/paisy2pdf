@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "prebuild": "npx -y shx cp node_modules/@db-ui/core/dist/fonts/* public/fonts & npx -y shx cp node_modules/@db-ui/core/dist/images/* public/images & npx -y shx cp node_modules/@db-ui/core/dist/js/* public/js & npx -y shx cp -r node_modules/@db-ui/core/dist/icons/* public/icons",
+    "prebuild": "npx -y shx cp -r node_modules/@db-ui/core/dist/fonts/* public/fonts & npx -y shx cp -r node_modules/@db-ui/core/dist/images/* public/images & npx -y shx cp -r node_modules/@db-ui/core/dist/js/* public/js & npx -y shx cp -r node_modules/@db-ui/core/dist/icons/* public/icons",
     "dev": "vite",
     "td": "tauri dev",
     "build": "vite build",
